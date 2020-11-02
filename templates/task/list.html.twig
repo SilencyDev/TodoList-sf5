@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block header_img %}<img class="slide-image" src="{{ asset('img/todolist_content.jpg') }}" alt="todo list">{% endblock %}
+
+{% block body %}
+    <div class="row">
+        {% for task in tasks %}
+        <div class="col-sm-4 col-lg-4 col-md-4 margin-bottom">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4 class="pull-right">
+                        {% if task.isDone %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            {% if app.user %}                    
+                                <form action="{{ path('task_delete', {'id' : task.id }) }}">
+                                <input type="hidden" name="token" value="{{ csrf_token('deletethattask'~ task.id) }}">
+                                <button class="border-0">
+                            {% endif %}
+                            <i class="glyphicon glyphicon-remove"></i>
+                            {% if app.user %} 
+                                </button> 
+                                </form>
+                            {% endif %}
+                        {% endif %}
+                    </h4>
+                    <h4><a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a></h4>
+                    <p>{{ task.content }}</p>
+                </div>
+                <div id="{{task.id}}">
+                    <p class="padding-left">Auteur: {% if task.user != NULL %}
+                        {{ task.user.username }}
+                        {% else %}
+                            Anonyme
+                        {% endif %}
+                    </p>
+                    {% if app.user %}
+                        <form action="{{ path('task_delete', {'id' : task.id }) }}">
+                            <input type="hidden" name="token" value="{{ csrf_token('deletethattask'~ task.id) }}">
+                            <button class="btn btn-danger btn-sm pull-right">Supprimer</button>
+                        </form>
+                        <form action="{{ path('task_toggle', {'id' : task.id }) }}">
+                            <button class="btn btn-success btn-sm pull-right">
+                                {% if not task.isDone %}
+                                    Marquer comme faite
+                                {% else %}\
+                                    Marquer non terminée
+                                {% endif %}
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                Il n'y a pas encore de tâche enregistrée. <a href="{{ path('task_create') }}" class="btn btn-warning pull-right">Créer une tâche</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

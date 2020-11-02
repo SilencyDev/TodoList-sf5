@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block header_title %}
+    {% if edit == true %}
+       <h1>Modifier
+    {% else %}
+        <h1 class="test">Ajouter
+    {% endif %} 
+    {% if edit == true %}
+        <strong>{{ task.title }}</strong>
+    {% else %}
+        une tâche
+    {% endif %}</h1>
+{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+            <button type="submit" class="btn btn-success pull-right">
+            {% if edit == true %}
+                Modifier
+            {% else %}
+                Ajouter
+            {% endif %}
+        </button>
+    {{ form_end(form) }}
+{% endblock %}
