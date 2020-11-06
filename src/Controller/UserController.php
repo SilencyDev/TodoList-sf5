@@ -13,15 +13,21 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
+    private $nbResult = 5;
+
     /**
      * @Route("/users", name="user_list")
      * @IsGranted("ROLE_ADMIN")
+     * @param UserRepository $userRepository
+     * @param Request $request
      * @return Response
      */
-    public function listAction(UserRepository $userRepository)
+    public function listAction(UserRepository $userRepository, Request $request)
     {
         return $this->render('user/list.html.twig', [
-            'users' => $userRepository->findAll()
+            'users' => $userRepository->findUsers((int) $request->get('page', 1), $this->nbResult),
+            'totalUser' => $userRepository->countUsers(),
+            'nbResult' => $this->nbResult
             ]);
     }
 

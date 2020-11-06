@@ -35,4 +35,7 @@
             </table>
         </div>
     {% endif %}
+    {% for i in 1..((totalUser/nbResult)|round(0, 'ceil')) %}
+        <a href="{{ path("user_list", {page: i}) }}">{{ i }}</a>
+    {% endfor %}
 {% endblock %}
