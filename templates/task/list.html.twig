@@ -58,4 +58,7 @@
             </div>
         {% endfor %}
     </div>
+    {% for i in 1..((totalTask/nbResult)|round(0, 'ceil')) %}
+        <a href="{{ path("task_list", {page: i}) }}">{{ i }}</a>
+    {% endfor %}
 {% endblock %}

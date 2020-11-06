@@ -12,25 +12,35 @@ use Symfony\Component\HttpFoundation\Request;
 
 class TaskController extends AbstractController
 {
+    private $nbResult = 5;
+
     /**
      * @Route("/tasks", name="task_list")
+     * @param TaskRepository $taskRepository
+     * @param Request $request
      * @return Response
      */
-    public function listAction(TaskRepository $taskRepository)
+    public function listAction(TaskRepository $taskRepository, Request $request)
     {
         return $this->render('task/list.html.twig',[
-            'tasks' => $taskRepository->findTaskFileteredByDone(0)
+            'tasks' => $taskRepository->findTasksFileteredByBoolDone(0, (int) $request->get('page', 1), $this->nbResult),
+            'totalTask' => $taskRepository->countTasksNotDone(),
+            'nbResult' => $this->nbResult
             ]);
     }
 
     /**
      * @Route("/tasks/done", name="task_list_done")
+     * @param TaskRepository $taskRepository
+     * @param Request $request
      * @return Response
      */
-    public function listDoneAction(TaskRepository $taskRepository)
+    public function listDoneAction(TaskRepository $taskRepository, Request $request)
     {
         return $this->render('task/list.html.twig', [
-            'tasks' => $taskRepository->findTaskFileteredByDone(1)
+            'tasks' => $taskRepository->findTaskFileteredByBoolDone(1, (int) $request->get('page', 1), $this->nbResult),
+            'totalTask' => $taskRepository->countTasksDone(),
+            'nbResult' => $this->nbResult
             ]);
     }
 
