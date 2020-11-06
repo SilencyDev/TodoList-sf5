@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use App\Form\TaskType;
+use App\Repository\TaskRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,10 +16,10 @@ class TaskController extends AbstractController
      * @Route("/tasks", name="task_list")
      * @return Response
      */
-    public function listAction()
+    public function listAction(TaskRepository $taskRepository)
     {
         return $this->render('task/list.html.twig',[
-            'tasks' => $this->getDoctrine()->getRepository('App:Task')->findBy(['isDone'=> 0])
+            'tasks' => $taskRepository->findBy(['isDone'=> 0])
             ]);
     }
 
@@ -26,10 +27,10 @@ class TaskController extends AbstractController
      * @Route("/tasks/done", name="task_list_done")
      * @return Response
      */
-    public function listDoneAction()
+    public function listDoneAction(TaskRepository $taskRepository)
     {
         return $this->render('task/list.html.twig', [
-            'tasks' => $this->getDoctrine()->getRepository('App:Task')->findBy(['isDone'=> 1])
+            'tasks' => $taskRepository->findBy(['isDone'=> 1])
             ]);
     }
 
