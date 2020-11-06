@@ -18,4 +18,15 @@ class TaskRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Task::class);
     }
+
+    public function findTaskFileteredByDone($value)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.isDone = :val')
+            ->orderBy('t.id', 'ASC')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

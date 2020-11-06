@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title '404 not found' %}
+
+{% block body %}    
+    <div class="text-center">
+        <h1>404 not found</h1>
+    </div>
+    <div class="container justify-content-center">
+        <p>
+            The requested page couldn't be located. Checkout for any URL
+            misspelling or <a href="{{ path('homepage') }}">return to the homepage</a>.
+        </p>
+    </div>
+{% endblock %}
