@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,10 +18,10 @@ class UserController extends AbstractController
      * @IsGranted("ROLE_ADMIN")
      * @return Response
      */
-    public function listAction()
+    public function listAction(UserRepository $userRepository)
     {
         return $this->render('user/list.html.twig', [
-            'users' => $this->getDoctrine()->getRepository('App:User')->findAll()
+            'users' => $userRepository->findAll()
             ]);
     }
 
