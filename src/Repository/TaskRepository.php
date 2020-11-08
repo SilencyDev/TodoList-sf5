@@ -19,9 +19,11 @@ class TaskRepository extends ServiceEntityRepository
         parent::__construct($registry, Task::class);
     }
 
-    public function findTasksFileteredByBoolDone(bool $value, int $page, int $nbResult)
+    public function findTasksFilteredByBoolDone(bool $value, int $page, int $nbResult)
     {
         return $this->createQueryBuilder('t')
+            ->leftjoin('t.user', 'u')
+            ->addSelect('PARTIAL u.{username, id}')
             ->andWhere('t.isDone = :val')
             ->orderBy('t.id', 'ASC')
             ->setFirstResult(($page - 1) * $nbResult)
