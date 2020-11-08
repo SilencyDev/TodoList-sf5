@@ -34,7 +34,6 @@ class UserController extends AbstractController
     /**
      * @Route("/users/create", name="user_create")
      * @Route("/users/edit/{id}", name="user_edit")
-     * @IsGranted("ROLE_ADMIN")
      * @param User $user
      * @param Request $request
      * @return Response

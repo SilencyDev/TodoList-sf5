@@ -25,7 +25,7 @@ class TaskRepository extends ServiceEntityRepository
             ->leftjoin('t.user', 'u')
             ->addSelect('PARTIAL u.{username, id}')
             ->andWhere('t.isDone = :val')
-            ->orderBy('t.id', 'ASC')
+            ->orderBy('t.id', 'DESC')
             ->setFirstResult(($page - 1) * $nbResult)
             ->setMaxResults($nbResult)
             ->setParameter('val', $value)
