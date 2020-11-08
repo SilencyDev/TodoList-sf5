@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class TaskController extends AbstractController
 {
-    private $nbResult = 5;
+    private $nbResult = 6;
 
     /**
      * @Route("/tasks", name="task_list")
@@ -23,7 +23,7 @@ class TaskController extends AbstractController
     public function listAction(TaskRepository $taskRepository, Request $request)
     {
         return $this->render('task/list.html.twig',[
-            'tasks' => $taskRepository->findTasksFileteredByBoolDone(0, (int) $request->get('page', 1), $this->nbResult),
+            'tasks' => $taskRepository->findTasksFilteredByBoolDone(0, (int) $request->get('page', 1), $this->nbResult),
             'totalTask' => $taskRepository->countTasksNotDone(),
             'nbResult' => $this->nbResult
             ]);
@@ -38,7 +38,7 @@ class TaskController extends AbstractController
     public function listDoneAction(TaskRepository $taskRepository, Request $request)
     {
         return $this->render('task/list.html.twig', [
-            'tasks' => $taskRepository->findTaskFileteredByBoolDone(1, (int) $request->get('page', 1), $this->nbResult),
+            'tasks' => $taskRepository->findTasksFilteredByBoolDone(1, (int) $request->get('page', 1), $this->nbResult),
             'totalTask' => $taskRepository->countTasksDone(),
             'nbResult' => $this->nbResult
             ]);
