@@ -49,4 +49,4 @@ jobs:
       - name: init fixtures
         run: php bin/console doctrine:fixtures:load --env=test
       - name: Run Tests
-        run: php vendor/bin/simple-phpunit --testsuite
+        run: php vendor/bin/simple-phpunit --testsuite Controller,Entity
