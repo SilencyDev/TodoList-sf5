@@ -11,7 +11,7 @@ class TaskTest extends KernelTestCase
     public function getEntity(): Task
     {
         return (new Task())
-            ->setUser(new User)
+            ->setUser(new User())
             ->setContent('Lorem ipsum')
             ->setTitle('A test')
             ->setCreatedAt(new \DateTime())

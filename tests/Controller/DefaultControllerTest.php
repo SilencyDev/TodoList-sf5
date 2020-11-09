@@ -18,7 +18,7 @@ class DefaultControllerTest extends WebTestCase
 
     public function testGetHomepageUnauthorized()
     {
-        $this->client->request('GET','/');
+        $this->client->request('GET', '/');
 
         $this->assertEquals(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
 
@@ -32,7 +32,7 @@ class DefaultControllerTest extends WebTestCase
     {
         $this->logIn();
 
-        $crawler = $this->client->request('GET','/users');
+        $crawler = $this->client->request('GET', '/users');
 
         $this->assertEquals(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
@@ -49,7 +49,7 @@ class DefaultControllerTest extends WebTestCase
         // you may need to use a different token class depending on your application.
         // for example, when using Guard authentication you must instantiate PostAuthenticationGuardToken
         $token = new UsernamePasswordToken('admin', null, $firewallName, ['ROLE_ADMIN']);
-        $session->set('_security_'.$firewallContext, serialize($token));
+        $session->set('_security_' . $firewallContext, serialize($token));
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());
