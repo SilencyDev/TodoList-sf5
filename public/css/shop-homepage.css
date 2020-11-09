@@ -61,3 +61,48 @@ footer {
 .margin-bottom {
     margin-bottom: 0.5em;
 }
+
+.margin {
+    margin-bottom: 0.1em;
+    margin-top: 0.1em;
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+}
+
+.thumbnail .caption {
+    padding: 0px;
+    color: #333;
+}
+
+.thumbnail {
+    padding: 9px;
+    color: #333;
+}
+
+.overflowy {
+    overflow-y: hidden;
+}
+
+.overflowy:hover{
+    overflow-y: scroll;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 1px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }

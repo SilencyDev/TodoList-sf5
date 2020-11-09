@@ -5,18 +5,13 @@
 {% block body %}
     <div class="row">
         {% for task in tasks %}
-        <div class="col-sm-4 col-lg-4 col-md-4 margin-bottom">
-            <div class="thumbnail">
-                <div class="caption">
+        <div class="col-sm-12 col-lg-6 col-md-4 margin-bottom">
+            <div class="thumbnail margin">
+                <div class="caption overflowy">
                     <h4 class="pull-right">
                         {% if task.isDone %}
                             <span class="glyphicon glyphicon-ok"></span>
                         {% else %}
-                            {% if app.user %}                    
-                                <form action="{{ path('task_delete', {'id' : task.id }) }}">
-                                <input type="hidden" name="token" value="{{ csrf_token('deletethattask'~ task.id) }}">
-                                <button class="border-0">
-                            {% endif %}
                             <i class="glyphicon glyphicon-remove"></i>
                             {% if app.user %} 
                                 </button> 
@@ -26,9 +21,8 @@
                     </h4>
                     <h4><a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a></h4>
                     <p>{{ task.content }}</p>
-                </div>
-                <div id="{{task.id}}">
-                    <p class="padding-left">Auteur: {% if task.user != NULL %}
+                    <div id="{{task.id}}">
+                    <p>Auteur: {% if task.user != NULL %}
                         {{ task.user.username }}
                         {% else %}
                             Anonyme
@@ -40,7 +34,7 @@
                             <button class="btn btn-danger btn-sm pull-right">Supprimer</button>
                         </form>
                         <form action="{{ path('task_toggle', {'id' : task.id }) }}">
-                            <button class="btn btn-success btn-sm pull-right">
+                            <button class="btn btn-success btn-sm">
                                 {% if not task.isDone %}
                                     Marquer comme faite
                                 {% else %}
@@ -49,6 +43,7 @@
                             </button>
                         </form>
                     {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,6 +53,7 @@
             </div>
         {% endfor %}
     </div>
+    <hr>
     {% for i in 1..((totalTask/nbResult)|round(0, 'ceil')) %}
         <a href="{{ path("task_list", {page: i}) }}">{{ i }}</a>
     {% endfor %}
