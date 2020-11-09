@@ -10,6 +10,7 @@
 
     <rule ref="PSR12"/>
 
+    <file>config/</file>
     <file>src/</file>
     <file>tests/</file>
 

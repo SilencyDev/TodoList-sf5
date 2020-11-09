@@ -110,7 +110,11 @@ class TaskController extends AbstractController
      */
     public function deleteTaskAction(Task $task, Request $request)
     {
-        if ((($this->getUser()->getRoles()[0] === 'ROLE_ADMIN') && ($task->getUser() === null)) || $task->getUser() === $this->getUser()) {
+        if (
+            (($this->getUser()->getRoles()[0] === 'ROLE_ADMIN')
+            && ($task->getUser() === null))
+                || $task->getUser() === $this->getUser()
+        ) {
             if ($this->isCsrfTokenValid('deletethattask' . $task->getId(), $request->get('token'))) {
                 $em = $this->getDoctrine()->getManager();
                 $em->remove($task);
