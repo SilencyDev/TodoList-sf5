@@ -33,13 +33,13 @@ class UserControllerTest extends WebTestCase
     public function testCreateAction()
     {
         $crawler = $this->client->request('GET', '/users/create');
-        $random = mt_rand(1,10000);
+        $random = mt_rand(1, 10000);
 
         $form = $crawler->selectButton('Ajouter')->form();
-        $form['user[username]'] = $random.'Silency';
+        $form['user[username]'] = $random . 'Silency';
         $form['user[password][first]'] = 'test';
         $form['user[password][second]'] = 'test';
-        $form['user[email]'] = mt_rand(1,10000).'test@test.fr';
+        $form['user[email]'] = mt_rand(1, 10000) . 'test@test.fr';
         $form['user[roles]'] = "ROLE_ADMIN";
 
 
@@ -56,13 +56,13 @@ class UserControllerTest extends WebTestCase
         $this->logInAdmin();
 
         $crawler = $this->client->request('GET', '/users/create');
-        $random = mt_rand(1,10000);
+        $random = mt_rand(1, 10000);
 
         $form = $crawler->selectButton('Ajouter')->form();
-        $form['user[username]'] = $random.'Silency';
+        $form['user[username]'] = $random . 'Silency';
         $form['user[password][first]'] = 'test';
         $form['user[password][second]'] = 'test';
-        $form['user[email]'] = mt_rand(1,10000).'test@test.fr';
+        $form['user[email]'] = mt_rand(1, 10000) . 'test@test.fr';
         $form['user[roles]'] = "ROLE_ADMIN";
 
 
@@ -76,14 +76,14 @@ class UserControllerTest extends WebTestCase
 
     /**
      * This test must be ran with a database starting at id = 1 with the fixtures provided
-     * 
-     * php bin/console cache:clear --env=test  
-     * 
+     *
+     * php bin/console cache:clear --env=test
+     *
      * php bin/console doctrine:database:drop --force --env=test
      * php bin/console doctrine:database:create --env=test
      * php bin/console doctrine:migrations:migrate --env=test --no-interaction
-     * 
-     * php bin/console doctrine:fixtures:load --env=test 
+     *
+     * php bin/console doctrine:fixtures:load --env=test
      */
     public function testEditAction()
     {

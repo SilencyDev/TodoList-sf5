@@ -26,24 +26,24 @@ class TaskControllerTest extends WebTestCase
     {
         $this->logInAdmin();
         $crawler = $this->client->request('GET', '/tasks/done');
-        
+
         $this->assertEquals(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
 
     public function testCreateAction()
     {
         $this->logInAdmin();
-        $random = mt_rand(1,10000);
+        $random = mt_rand(1, 10000);
         $crawler = $this->client->request('GET', '/tasks/create');
 
         $form = $crawler->selectButton('Ajouter')->form();
-        $form['task[title]'] = $random.' test';
+        $form['task[title]'] = $random . ' test';
         $form['task[content]'] = 'test';
         $crawler = $this->client->submit($form);
 
         $crawler = $this->client->followRedirect();
         $this->assertEquals(1, $crawler->filter('.alert-success')->count());
-        $link = str_replace("http://localhost", "", $crawler->selectLink($random.' test')->link()->getUri());
+        $link = str_replace("http://localhost", "", $crawler->selectLink($random . ' test')->link()->getUri());
 
         return [$random,$link];
     }
@@ -58,7 +58,7 @@ class TaskControllerTest extends WebTestCase
         $crawler = $this->client->request('GET', $randomAndLink[1]);
 
         $form = $crawler->selectButton('Modifier')->form();
-        $form['task[title]'] = $randomAndLink[0].' test';
+        $form['task[title]'] = $randomAndLink[0] . ' test';
         $form['task[content]'] = 'test modifié';
         $crawler = $this->client->submit($form);
 
@@ -66,7 +66,7 @@ class TaskControllerTest extends WebTestCase
 
         $this->assertEquals(1, $crawler->filter('.alert-success')->count());
 
-        return str_replace("/tasks/edit/","",$randomAndLink[1]);
+        return str_replace("/tasks/edit/", "", $randomAndLink[1]);
     }
 
     /**
@@ -87,7 +87,7 @@ class TaskControllerTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('.alert-danger')->count());
     }
 
-    
+
     /**
      * @depends testEditAction
      */
@@ -135,7 +135,6 @@ class TaskControllerTest extends WebTestCase
         $crawler = $this->client->followRedirect();
 
         $this->assertEquals(1, $crawler->filter('.alert-success')->count());
-
     }
 
     public function testToggleTaskUndoneAction()
@@ -149,7 +148,6 @@ class TaskControllerTest extends WebTestCase
         $crawler = $this->client->followRedirect();
 
         $this->assertEquals(1, $crawler->filter('.alert-success')->count());
-
     }
 
     private function logInAdmin()

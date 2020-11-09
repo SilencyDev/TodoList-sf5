@@ -12,18 +12,17 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        for($i=0; $i <10; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $user = new User();
-            $user->setUsername('Silency'.$i);
-    
+            $user->setUsername('Silency' . $i);
+
             // password = "test"
             $user->setPassword("$2y$13$3AM4cATsK383z8I2.GzJce6fH7cVZcnWm2rPuZDVhpNtJgjzKQUcK");
-            $user->setEmail('test'.$i.'@test.fr');
-            if($i === 1) {
-                $user->setRoles(['ROLE_USER']);     
-            }
-            else {
-                $user->setRoles((rand(0, 1) || $i==0) ? ['ROLE_ADMIN'] : ['ROLE_USER']);
+            $user->setEmail('test' . $i . '@test.fr');
+            if ($i === 1) {
+                $user->setRoles(['ROLE_USER']);
+            } else {
+                $user->setRoles((rand(0, 1) || $i == 0) ? ['ROLE_ADMIN'] : ['ROLE_USER']);
             }
             $this->taskCatalogue($user, $manager);
             $manager->persist($user);
@@ -34,13 +33,13 @@ class AppFixtures extends Fixture
     private function taskCatalogue(User $user, ObjectManager $manager)
     {
         $faker = Faker\Factory::create();
-        for($k=0; $k <2; $k++) {
+        for ($k = 0; $k < 2; $k++) {
             $task = new Task();
             $task->setUser($user);
             $task->setContent($faker->sentence());
             $task->setTitle($faker->title());
             $task->toggle($faker->boolean());
-    
+
             $manager->persist($task);
         }
     }

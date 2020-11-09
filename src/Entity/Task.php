@@ -62,7 +62,7 @@ class Task
     /**
      * @return integer|null
      */
-    public function getId(): ?int 
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -144,7 +144,7 @@ class Task
      * @param User $user
      * @return self
      */
-    public function setUser(User $user) :self
+    public function setUser(User $user): self
     {
         $this->user = $user;
 
