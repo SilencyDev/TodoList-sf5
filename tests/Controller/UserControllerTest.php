@@ -74,21 +74,11 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('.alert-success')->count());
     }
 
-    /**
-     * This test must be ran with a database starting at id = 1 with the fixtures provided
-     *
-     * php bin/console cache:clear --env=test
-     *
-     * php bin/console doctrine:database:drop --force --env=test
-     * php bin/console doctrine:database:create --env=test
-     * php bin/console doctrine:migrations:migrate --env=test --no-interaction
-     *
-     * php bin/console doctrine:fixtures:load --env=test
-     */
     public function testEditAction()
     {
         $this->logInAdmin();
-        $crawler = $this->client->request('GET', '/users/edit/3');
+        $crawler = $this->client->request('GET', '/users');
+        $crawler = $this->client->request('GET', $crawler->filter('#3')->link()->getUri());
 
         $form = $crawler->selectButton('Modifier')->form();
         $form['user[username]'] = 'Silency2';
