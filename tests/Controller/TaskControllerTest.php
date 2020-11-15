@@ -17,7 +17,10 @@ class TaskControllerTest extends WebTestCase
     public function testListAction()
     {
         $this->logInAdmin();
-        $crawler = $this->client->request('GET', '/tasks');
+        $crawler = $this->client->request('GET', '/');
+
+        $link = $crawler->selectLink('Liste des tâches à faire')->link();
+        $crawler = $this->client->click($link);
 
         $this->assertEquals(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
@@ -25,7 +28,10 @@ class TaskControllerTest extends WebTestCase
     public function testListDoneAction()
     {
         $this->logInAdmin();
-        $crawler = $this->client->request('GET', '/tasks/done');
+        $crawler = $this->client->request('GET', '/');
+
+        $link = $crawler->selectLink('Liste des tâches terminées')->link();
+        $crawler = $this->client->click($link);
 
         $this->assertEquals(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }

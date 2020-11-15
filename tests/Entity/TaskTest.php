@@ -14,8 +14,7 @@ class TaskTest extends KernelTestCase
             ->setUser(new User())
             ->setContent('Lorem ipsum')
             ->setTitle('A test')
-            ->setCreatedAt(new \DateTime())
-            ->toggle(1);
+        ;
     }
 
     public function assertHasErrors(Task $task, int $number = 0)
@@ -38,5 +37,20 @@ class TaskTest extends KernelTestCase
     public function testUnvalidTitleEntity()
     {
         $this->assertHasErrors($this->getEntity()->setTitle(''), 1);
+    }
+
+    public function testCreatedAtNotNullEntity()
+    {
+        $this->assertNotNull($this->getEntity()->getCreatedAt());
+    }
+
+    public function testToggleToTrueEntity()
+    {
+        $this->assertEquals($this->getEntity()->toggle(1)->IsDone(), 1);
+    }
+
+    public function testToggleToFalseEntity()
+    {
+        $this->assertEquals($this->getEntity()->toggle(0)->IsDone(), 0);
     }
 }

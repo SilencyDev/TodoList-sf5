@@ -37,6 +37,15 @@ class DefaultControllerTest extends WebTestCase
         $this->assertEquals(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
 
+    public function test404Page()
+    {
+        $this->logIn();
+
+        $crawler = $this->client->request('GET', '/sdasdf');
+
+        $this->assertEquals(Response::HTTP_NOT_FOUND, $this->client->getResponse()->getStatusCode());
+    }
+
     private function logIn()
     {
         $session = $this->client->getContainer()->get('session');

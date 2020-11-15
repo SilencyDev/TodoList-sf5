@@ -10,6 +10,10 @@ use Faker;
 
 class AppFixtures extends Fixture
 {
+    /**
+     * @param ObjectManager $manager
+     * @return void
+     */
     public function load(ObjectManager $manager)
     {
         for ($i = 0; $i < 10; $i++) {
@@ -30,6 +34,11 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
+    /**
+     * @param User $user
+     * @param ObjectManager $manager
+     * @return void
+     */
     private function taskCatalogue(User $user, ObjectManager $manager)
     {
         $faker = Faker\Factory::create();

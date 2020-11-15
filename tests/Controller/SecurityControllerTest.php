@@ -25,8 +25,16 @@ class SecurityControllerTest extends WebTestCase
     {
         $this->logInAdmin();
 
-        $crawler = $this->client->request('GET', '/logout');
-        $this->assertEquals(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
+        $crawler = $this->client->request('GET', '/');
+
+        $link = $crawler->selectLink('Se déconnecter')->link();
+        $crawler = $this->client->click($link);
+
+        $crawler = $this->client->followRedirect();
+        $crawler = $this->client->followRedirect();
+
+        $this->assertEquals(1, $crawler->filter('input[name="_username"]')->count());
+        $this->assertEquals(1, $crawler->filter('input[name="_password"]')->count());
     }
 
     private function logInAdmin()

@@ -16,7 +16,7 @@
 ###< symfony/phpunit-bridge ###
 
 /uml
-/web
+/docs/test-coverage
 ###> squizlabs/php_codesniffer ###
 /.phpcs-cache
 /phpcs.xml
