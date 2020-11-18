@@ -17,10 +17,10 @@
 
     <testsuites>
         <testsuite name="controller">
-            <directory>test/Controller</directory>
+            <directory>tests/Controller</directory>
         </testsuite>
-                <testsuite name="entity">
-            <directory>test/Entity</directory>
+        <testsuite name="entity">
+            <directory>tests/Entity</directory>
         </testsuite>
     </testsuites>
 
