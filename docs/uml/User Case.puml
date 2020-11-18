@@ -1,0 +1,22 @@
+@startuml User case
+rectangle "User case" {
+    left to right direction
+    actor "User" as user
+    actor "Admin" as admin
+    rectangle "Todolist" {
+
+        usecase "create/edit/delete own tasks" as uc1
+        usecase "delete anonymous tasks" as uc2
+        usecase "create user" as uc3
+        usecase "edit user" as uc4
+        (uc1) .> (login) : include
+        (uc2) .> (login) : include
+        (uc4) .> (login) : include
+    }
+    user <|-- admin
+    user --> uc1
+    user --> uc3
+    admin --> uc2
+    admin --> uc4
+}
+@enduml

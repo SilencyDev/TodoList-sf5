@@ -1,0 +1,24 @@
+@startuml Class diagram
+
+rectangle "Class diagram" {
+
+    Class Task {
+        - title: String
+        - content: String
+        - createdAt: Datetime
+        - user: User
+        - isDone: Bool
+    }
+
+    Class User {
+        - username: String
+        - password: String
+        - email: String
+        - roles: Json
+        - tasks: Task
+    }
+}
+
+Task "Many" -- "One" User : < Own
+
+@enduml

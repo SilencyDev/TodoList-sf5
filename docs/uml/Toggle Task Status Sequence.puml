@@ -1,0 +1,23 @@
+@startuml Toggle Task Status Sequence
+
+box "Toggle Task Status Sequence"
+"Connected user" -> Todolist: [https method : GET] /tasks or /tasks/done
+Todolist -> Database: request tasks with done = (false for /tasks, true for /tasks/done) 
+activate Database
+Database --> Todolist: send requested tasks
+deactivate Database
+Todolist --> "Connected user": send the requested page
+
+"Connected user" -> Todolist: [https method : POST] /tasks/toggle/{id}
+Todolist -> Database: reverse the boolean value from task.done where id = {id}
+activate Database
+Database --> Todolist: send confirmation
+deactivate Database
+Todolist -> Database: request task.done = reversed task.done value
+activate Database
+Database --> Todolist: send requested tasks
+deactivate Database
+Todolist --> "Connected user": send the requested page
+
+end box
+@enduml

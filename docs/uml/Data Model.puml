@@ -1,0 +1,23 @@
+@startuml Data model
+
+rectangle "Data model" {
+    Class Task {
+        {field} title: String
+        {field} content: String
+        {field} createdAt: Datetime
+        {field} user: User
+        {field} isDone: Bool
+    }
+
+    Class User {
+        {field} username: String
+        {field} password: String
+        {field} email: String
+        {field} roles: Json
+        {field} tasks: Task
+    }
+}
+
+Task "Many" -- "One" User
+
+@enduml

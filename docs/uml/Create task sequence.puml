@@ -1,0 +1,30 @@
+@startuml Create Task Sequence
+
+box "Create Task Sequence"
+"Connected user" -> Todolist: [https method : GET] /tasks/create
+Todolist --> "Connected user": send create task form
+
+"Connected user" -> Todolist: [https method : POST] /tasks/create with form completed
+Todolist --> Todolist: validate the form
+activate Todolist
+
+alt valid form
+deactivate Todolist
+
+    Todolist -> Database: create the task
+    activate Database
+    Database --> Todolist: send confirmation
+    deactivate Database
+    Todolist -> Database: request tasks with done = false
+    activate Database
+    Database --> Todolist: send requested tasks
+    deactivate Database
+    Todolist --> "Connected user": redirect to /tasks/
+
+else unvalid form
+
+    Todolist --> "Connected user": send errors on tasks/create page
+
+end
+end box
+@enduml
