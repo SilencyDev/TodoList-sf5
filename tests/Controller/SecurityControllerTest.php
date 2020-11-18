@@ -39,12 +39,12 @@ class SecurityControllerTest extends WebTestCase
 
     private function logInAdmin()
     {
-        $crawler = $this->client->request('GET', '/login');
-        $form = $crawler->selectButton('Se connecter')->form();
-        $form['_username'] = 'Silency0';
-        $form['_password'] = 'test';
-        $crawler = $this->client->submit($form);
+        $userRepository = static::$container->get(UserRepository::class);
 
-        $crawler = $this->client->followRedirect();
+        // retrieve the test user
+        $testUser = $userRepository->findOneByEmail('test0@test.fr');
+
+        // simulate $testUser being logged in
+        $this->client->loginUser($testUser);
     }
 }
