@@ -2,7 +2,6 @@
 
 namespace tests\Controller;
 
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -40,12 +39,12 @@ class SecurityControllerTest extends WebTestCase
 
     private function logInAdmin()
     {
-        $userRepository = static::$container->get(UserRepository::class);
+        $crawler = $this->client->request('GET', '/login');
+        $form = $crawler->selectButton('Se connecter')->form();
+        $form['_username'] = 'Silency0';
+        $form['_password'] = 'test';
+        $crawler = $this->client->submit($form);
 
-        // retrieve the test user
-        $testUser = $userRepository->findOneByEmail('test0@test.fr');
-
-        // simulate $testUser being logged in
-        $this->client->loginUser($testUser);
+        $crawler = $this->client->followRedirect();
     }
 }
