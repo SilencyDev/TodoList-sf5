@@ -54,8 +54,7 @@
         "symfony/web-profiler-bundle": "^5.1"
     },
     "config": {
-        "optimize-autoloader": true,
-        "apcu-autoloader": true,
+
         "preferred-install": {
             "*": "dist"
         },
