@@ -110,22 +110,17 @@ class TaskController extends AbstractController
      */
     public function deleteTaskAction(Task $task, Request $request)
     {
-        if (
-            (($this->getUser()->getRoles()[0] === 'ROLE_ADMIN')
-            && ($task->getUser() === null))
-                || $task->getUser() === $this->getUser()
-        ) {
-            if ($this->isCsrfTokenValid('deletethattask' . $task->getId(), $request->get('token'))) {
-                $em = $this->getDoctrine()->getManager();
-                $em->remove($task);
-                $em->flush();
+        $this->denyAccessUnlessGranted('DELETE', $task);
+        if ($this->isCsrfTokenValid('deletethattask' . $task->getId(), $request->get('token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($task);
+            $em->flush();
 
-                $this->addFlash('success', 'La tâche a bien été supprimée.');
-                return $this->redirectToRoute('task_list');
-            }
-                $this->addFlash('error', 'Token Csrf non valide');
-                return $this->redirectToRoute('task_list');
+            $this->addFlash('success', 'La tâche a bien été supprimée.');
+            return $this->redirectToRoute('task_list');
         }
+            $this->addFlash('error', 'Token Csrf non valide');
+            return $this->redirectToRoute('task_list');
         $this->addFlash('error', 'Vous n\'avez pas les droits nécessaires afin de supprimer cette tâche.');
         return $this->redirectToRoute('task_list');
     }

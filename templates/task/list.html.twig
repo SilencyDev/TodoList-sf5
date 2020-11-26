@@ -22,17 +22,18 @@
                     <h4><a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a></h4>
                     <p>{{ task.content }}</p>
                     <div id="{{task.id}}">
-                    <p>Auteur: {% if task.user != NULL %}
-                        {{ task.user.username }}
-                        {% else %}
-                            Anonyme
+                        <p>Auteur: {% if task.user != NULL %}
+                            {{ task.user.username }}
+                            {% else %}
+                                Anonyme
+                            {% endif %}
+                        </p>
+                        {% if is_granted('DELETE', task) %}
+                            <form action="{{ path('task_delete', {'id' : task.id }) }}">
+                                <input type="hidden" name="token" value="{{ csrf_token('deletethattask'~ task.id) }}">
+                                <button class="btn btn-danger btn-sm pull-right">Supprimer</button>
+                            </form>
                         {% endif %}
-                    </p>
-                    {% if app.user %}
-                        <form action="{{ path('task_delete', {'id' : task.id }) }}">
-                            <input type="hidden" name="token" value="{{ csrf_token('deletethattask'~ task.id) }}">
-                            <button class="btn btn-danger btn-sm pull-right">Supprimer</button>
-                        </form>
                         <form action="{{ path('task_toggle', {'id' : task.id }) }}">
                             <button class="btn btn-success btn-sm">
                                 {% if not task.isDone %}
@@ -42,7 +43,6 @@
                                 {% endif %}
                             </button>
                         </form>
-                    {% endif %}
                     </div>
                 </div>
             </div>

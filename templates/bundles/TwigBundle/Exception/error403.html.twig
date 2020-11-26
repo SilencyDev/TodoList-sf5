@@ -3,12 +3,12 @@
 {% block title '403 Accès Interdit' %}
 
 {% block body %}    
-    <div class="text-center">
+    <div class="text-center" id="403">
         <h1>403 Accès Interdit</h1>
     </div>
     <div class="container justify-content-center">
         <p>
-            Vous n'avez pas les droits nécessaire pour accéder à cette page : <a href="{{ path('homepage') }}">Retour à la page d'accueil</a>.
+            Vous n'avez pas les droits nécessaires pour accéder à cette page : <a href="{{ path('homepage') }}">Retour à la page d'accueil</a>.
         </p>
     </div>
 {% endblock %}

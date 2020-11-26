@@ -42,7 +42,7 @@ class AppFixtures extends Fixture
     private function taskCatalogue(User $user, ObjectManager $manager)
     {
         $faker = Faker\Factory::create();
-        for ($k = 0; $k < 2; $k++) {
+        for ($k = 0; $k < 4; $k++) {
             $task = new Task();
             $task->setUser($user);
             $task->setContent($faker->sentence());
