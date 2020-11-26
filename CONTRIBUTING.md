@@ -18,17 +18,35 @@ Guide :
 ## Nouvelle fonctionnalité
 Il est toujours apprécié de proposer de nouvelles fonctionnalités. Cependant, prenez le temps de réfléchir, assurez-vous que cette fonctionnalité correspond bien aux objectifs du projet.
 
+## Test coverage (Optionnel)
+Si possible, veuillez inclure les tests de vos fonctionnalités.
+
+Pour effectuer une analyze de la couverture des tests :
+```
+    ./vendor/bin/simple-phpunit --coverage-html docs/test-coverage
+```
+
 ## Pull request
 Elles doivent rester dans le cadre du projet et ne doit pas contenir de `commits` non lié au projet. Veuillez demander avant de poster votre `pull request`.
 
 Suivez ce processus afin de proposer une `pull request` qui respecte les bonnes pratiques :
-1. [Fork](http://help.github.com/fork-a-repo/) le projet, clonez votre `fork` et configurez les `remotes`:
+
+1. Mettez votre code à la norme PSR-12 automatiquement via `code sniffer` (corrigez les erreurs non résolues par la commande `./vendor/bin/phpcbf`) :
+    ```
+    ./vendor/bin/phpcs
+    ./vendor/bin/phpcbf
+    ```
+2. Testez vos modifications via les tests :
+    ```
+    ./vendor/bin/simple-phpunit
+    ```
+3. [Fork](http://help.github.com/fork-a-repo/) le projet, clonez votre `fork` et configurez les `remotes`:
     ```
     git clone https://github.com/<your-username>/<repo-name>
     cd todolist-sf5
     git remote add upstream https://github.com/Silencydev/todolist-sf5
     ```
-2. Récupérez les dernières modifications depuis `upstream`:
+4. Récupérez les dernières modifications depuis `upstream`:
     ```
     git checkout master
     git pull upstream master
@@ -36,7 +54,7 @@ Suivez ce processus afin de proposer une `pull request` qui respecte les bonnes 
     git checkout dev
     git pull upstream dev
     ``` 
-3. Créez une nouvelle branche qui contiendra votre fonctionnalité, modification ou correction :
+5. Créez une nouvelle branche qui contiendra votre fonctionnalité, modification ou correction :
     * Pour une nouvelle fonctionnalité ou modification :
         ```
         git checkout dev
@@ -47,7 +65,7 @@ Suivez ce processus afin de proposer une `pull request` qui respecte les bonnes 
         git checkout master
         git checkout -b hotfix/<feature-name>
         ```
-4. `Commit` vos changements via la convention de nommage suivante :
+6. `Commit` vos changements via la convention de nommage suivante :
     ```
     <type>: <subject> <body>
     ```
@@ -63,8 +81,8 @@ Suivez ce processus afin de proposer une `pull request` qui respecte les bonnes 
     * **style**: Corrections propres au coding style (PSR-12)
     * **test**: Ajout d'un nouveau test ou correction d'un test existant
     
-5. Push de la branche sur votre `repository` :
+7. Push de la branche sur votre `repository` :
     ```
     git push origin <branch-name> 
     ```
-6. Ouvrez une nouvelle `pull request` avec un titre et une description précises.
+8. Ouvrez une nouvelle `pull request` avec un titre et une description précises.

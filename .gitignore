@@ -14,8 +14,6 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
-
-/docs/test-coverage
 ###> squizlabs/php_codesniffer ###
 /.phpcs-cache
 /phpcs.xml
