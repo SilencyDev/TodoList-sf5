@@ -78,13 +78,13 @@ class TaskControllerTest extends WebTestCase
     /**
      * @depends testEditAction
      */
-    public function testDeleteTaskBadTokenAction($IdTask)
+    public function testDeleteTaskBadTokenAction($idtask)
     {
         $this->logInAdmin();
 
         $crawler = $this->client->request('GET', '/tasks');
 
-        $form = $crawler->filter(sprintf('#%s > form', $IdTask))->form();
+        $form = $crawler->filter(sprintf('#%s > form', $idtask))->form();
         $form['token'] = "badtoken";
         $crawler = $this->client->submit($form);
 
@@ -97,31 +97,30 @@ class TaskControllerTest extends WebTestCase
     /**
      * @depends testEditAction
      */
-    public function testDeleteTaskBadUserAction($IdTask)
+    public function testDeleteTaskBadUserAction($idtask)
     {
         $this->logInUser();
 
         $crawler = $this->client->request('GET', '/tasks');
 
-        $form = $crawler->filter(sprintf('#%s > form', $IdTask))->form();
-        $form['token'] = $form->get('token')->getValue();
-        $crawler = $this->client->submit($form);
+        $form = $crawler->filter(sprintf('#%s > form', $idtask))->form();
+        $crawler = $this->client->request('POST', sprintf('/tasks/delete/%s', $idtask), array(
+            '_token' => "badtoken"
+        ));
 
-        $crawler = $this->client->followRedirect();
-
-        $this->assertEquals(1, $crawler->filter('.alert-danger')->count());
+        $this->assertEquals(Response::HTTP_FORBIDDEN, $this->client->getResponse()->getStatusCode());
     }
 
     /**
      * @depends testEditAction
      */
-    public function testDeleteTaskAction($IdTask)
+    public function testDeleteTaskAction($idtask)
     {
         $this->logInAdmin();
 
         $crawler = $this->client->request('GET', '/tasks');
 
-        $form = $crawler->filter(sprintf('#%s > form', $IdTask))->form();
+        $form = $crawler->filter(sprintf('#%s > form', $idtask))->form();
         $form['token'] = $form->get('token')->getValue();
         $crawler = $this->client->submit($form);
 
@@ -129,6 +128,7 @@ class TaskControllerTest extends WebTestCase
 
         $this->assertEquals(1, $crawler->filter('.alert-success')->count());
     }
+
 
     public function testToggleTaskDoneAction()
     {
