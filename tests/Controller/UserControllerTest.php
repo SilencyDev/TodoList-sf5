@@ -17,7 +17,7 @@ class UserControllerTest extends WebTestCase
     public function testListAction()
     {
         $this->logInAdmin();
-        $crawler = $this->client->request('GET', '/users');
+        $this->client->request('GET', '/users');
 
         $this->assertEquals(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
@@ -25,7 +25,7 @@ class UserControllerTest extends WebTestCase
     public function testListActionBadRoles()
     {
         $this->logInUser();
-        $crawler = $this->client->request('GET', '/users');
+        $this->client->request('GET', '/users');
 
         $this->assertEquals(Response::HTTP_FORBIDDEN, $this->client->getResponse()->getStatusCode());
     }

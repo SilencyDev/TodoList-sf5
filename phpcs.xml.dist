@@ -13,5 +13,6 @@
     <file>config/</file>
     <file>src/</file>
     <file>tests/</file>
+    <file>public/index.php</file>
 
 </ruleset>
