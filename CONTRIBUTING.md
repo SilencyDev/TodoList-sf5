@@ -43,14 +43,14 @@ Suivez ce processus afin de proposer une `pull request` qui respecte les bonnes 
 ```
 
 3.  [Fork](http://help.github.com/fork-a-repo/) le projet, clonez votre `fork` et configurez les `remotes`:
-```
+```sh
 git clone https://github.com/<your-username>/<repo-name>
 cd todolist-sf5
 git remote add upstream https://github.com/Silencydev/todolist-sf5
 ```
 
 4.  Récupérez les dernières modifications depuis `upstream`:
-```
+```sh
 git checkout master
 git pull upstream master
 
@@ -60,19 +60,19 @@ git pull upstream dev
 
 5.  Créez une nouvelle branche qui contiendra votre fonctionnalité, modification ou correction:
 *   Pour une nouvelle fonctionnalité ou modification:
-```
+```sh
 git checkout dev
 git checkout -b feature/<feature-name>
 ```
 
 *   Pour une nouvelle correction:
-```
+```sh
 git checkout master
 git checkout -b hotfix/<feature-name>
 ```
 
 6.  `Commit` vos changements via la convention de nommage suivante :
-```
+```sh
 <type>: <subject> <body>
 ```
 
@@ -88,7 +88,7 @@ Types:
 *   **test**: Ajout d'un nouveau test ou correction d'un test existant
 
 7.  Push de la branche sur votre `repository` :
-```
+```sh
 git push origin <branch-name> 
 ```
 
