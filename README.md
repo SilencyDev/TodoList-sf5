@@ -1,5 +1,7 @@
 # TodoList-sf5
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9a80c1f6595844e58d0368adc7383e9b)](https://app.codacy.com/gh/SilencyDev/TodoList-sf5?utm_source=github.com&utm_medium=referral&utm_content=SilencyDev/TodoList-sf5&utm_campaign=Badge_Grade)
+
 Base du projet #8 : Améliorez un projet existant
 
 https://openclassrooms.com/projects/ameliorer-un-projet-existant-1
