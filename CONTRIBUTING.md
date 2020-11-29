@@ -4,8 +4,8 @@ Veuillez prendre connaissance de ce document afin de suivre le processus de cont
 
 ## Issues
 [Issues](https://github.com/Silencydev/todolist-sf5/issues) est le canal pour les rapports de bug, les nouvelles fonctionnalités ou pour soumètre une `pull requests`, cependant veuillez a bien respecter les restrictions suivantes :
-  * N'utilisez par ce canal pour vos demandes d'aide personnelles (utilisez [Stack Overflow](http://stackoverflow.com/)).
-  * Il est interdit d'insulter ou d'offenser d'une quelconque manière en commentaire d'une `issue`. Respectez les opinions des autres, et restez concentré sur la discussion principale.
+*   N'utilisez par ce canal pour vos demandes d'aide personnelles (utilisez [Stack Overflow](http://stackoverflow.com/)).
+*   Il est interdit d'insulter ou d'offenser d'une quelconque manière en commentaire d'une `issue`. Respectez les opinions des autres, et restez concentré sur la discussion principale.
 
 ## Rapport de bug
 Un bug est une erreur concrète, causée par le code présent dans ce `repository`.
@@ -22,7 +22,7 @@ Il est toujours apprécié de proposer de nouvelles fonctionnalités. Cependant,
 Si possible, veuillez inclure les tests de vos fonctionnalités.
 
 Pour effectuer une analyze de la couverture des tests :
-```
+```sh
 ./vendor/bin/simple-phpunit --coverage-html docs/test-coverage
 ```
 
@@ -32,13 +32,13 @@ Elles doivent rester dans le cadre du projet et ne doit pas contenir de `commits
 Suivez ce processus afin de proposer une `pull request` qui respecte les bonnes pratiques :
 
 1.  Mettez votre code à la norme PSR-12 automatiquement via `code sniffer` (corrigez les erreurs non résolues par la commande `./vendor/bin/phpcbf`) :
-```
+```sh
 ./vendor/bin/phpcs
 ./vendor/bin/phpcbf
 ```
 
 2.  Testez vos modifications via les tests :
-```
+```sh
 ./vendor/bin/simple-phpunit
 ```
 
@@ -59,13 +59,13 @@ git pull upstream dev
 ```
 
 5.  Créez une nouvelle branche qui contiendra votre fonctionnalité, modification ou correction:
-* Pour une nouvelle fonctionnalité ou modification:
+*   Pour une nouvelle fonctionnalité ou modification:
 ```
 git checkout dev
 git checkout -b feature/<feature-name>
 ```
 
-* Pour une nouvelle correction:
+*   Pour une nouvelle correction:
 ```
 git checkout master
 git checkout -b hotfix/<feature-name>
@@ -77,15 +77,15 @@ git checkout -b hotfix/<feature-name>
 ```
 
 Types:
-* **build**: Changements qui ont un effet sur le système (installation de nouvelles dépendances, composer, environnements, ...)
-* **ci**: Configuration de l'intégration continue
-* **docs**: Modifications de la documentation
-* **feat**: Nouvelle fonctionnalité
-* **fix**: Correction (`hotfix`)
-* **perf**: Modification du code qui optimise les performances
-* **refactor**: Toute modification du code dans le cadre d'un refactoring
-* **style**: Corrections propres au coding style (PSR-12)
-* **test**: Ajout d'un nouveau test ou correction d'un test existant
+*   **build**: Changements qui ont un effet sur le système (installation de nouvelles dépendances, composer, environnements, ...)
+*   **ci**: Configuration de l'intégration continue
+*   **docs**: Modifications de la documentation
+*   **feat**: Nouvelle fonctionnalité
+*   **fix**: Correction (`hotfix`)
+*   **perf**: Modification du code qui optimise les performances
+*   **refactor**: Toute modification du code dans le cadre d'un refactoring
+*   **style**: Corrections propres au coding style (PSR-12)
+*   **test**: Ajout d'un nouveau test ou correction d'un test existant
 
 7.  Push de la branche sur votre `repository` :
 ```
