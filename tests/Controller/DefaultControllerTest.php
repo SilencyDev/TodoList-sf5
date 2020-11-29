@@ -3,9 +3,7 @@
 namespace tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class DefaultControllerTest extends WebTestCase
 {
@@ -30,7 +28,7 @@ class DefaultControllerTest extends WebTestCase
 
     public function testGetHomepageAuthorized()
     {
-        $this->logIn();
+        $this->logInAdmin();
 
         $this->client->request('GET', '/users');
 
@@ -39,29 +37,21 @@ class DefaultControllerTest extends WebTestCase
 
     public function test404Page()
     {
-        $this->logIn();
+        $this->logInAdmin();
 
         $this->client->request('GET', '/sdasdf');
 
         $this->assertEquals(Response::HTTP_NOT_FOUND, $this->client->getResponse()->getStatusCode());
     }
 
-    private function logIn()
+    private function logInAdmin()
     {
-        $session = $this->client->getContainer()->get('session');
+        $crawler = $this->client->request('GET', '/login');
+        $form = $crawler->selectButton('Se connecter')->form();
+        $form['_username'] = 'Silency0';
+        $form['_password'] = 'test';
+        $crawler = $this->client->submit($form);
 
-        $firewallName = 'main';
-        // if you don't define multiple connected firewalls, the context defaults to the firewall name
-        // See https://symfony.com/doc/current/reference/configuration/security.html#firewall-context
-        $firewallContext = 'main';
-
-        // you may need to use a different token class depending on your application.
-        // for example, when using Guard authentication you must instantiate PostAuthenticationGuardToken
-        $token = new UsernamePasswordToken('admin', null, $firewallName, ['ROLE_ADMIN']);
-        $session->set('_security_' . $firewallContext, serialize($token));
-        $session->save();
-
-        $cookie = new Cookie($session->getName(), $session->getId());
-        $this->client->getCookieJar()->set($cookie);
+        $crawler = $this->client->followRedirect();
     }
 }
