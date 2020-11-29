@@ -23,7 +23,7 @@ class AppFixtures extends Fixture
             // password = "test"
             $user->setPassword("$2y$13$3AM4cATsK383z8I2.GzJce6fH7cVZcnWm2rPuZDVhpNtJgjzKQUcK");
             $user->setEmail('test' . $i . '@test.fr');
-            
+
             // set user 0 as Admin && 1 as User for tests
             $user->setRoles($i === 1 ? ['ROLE_USER'] :
                 ((rand(0, 1) || $i == 0) ? ['ROLE_ADMIN'] : ['ROLE_USER']));
