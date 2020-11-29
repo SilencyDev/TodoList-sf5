@@ -5,104 +5,96 @@
  */
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+  padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
 .slide-image {
-    width: 100%;
-    margin-top:4px;
+  width: 100%;
+  margin-top: 4px;
 }
 
 .carousel-holder {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .carousel-control,
 .item {
-    border-radius: 4px;
+  border-radius: 4px;
 }
 
 .caption {
-    height: 130px;
-    overflow: hidden;
+  height: 130px;
+  overflow: hidden;
 }
 
 .caption h4 {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 .thumbnail img {
-    width: 100%;
+  width: 100%;
 }
 
 .ratings {
-    padding-right: 10px;
-    padding-left: 10px;
-    color: #d17581;
-}
-
-.thumbnail {
-    padding: 0;
+  padding-right: 10px;
+  padding-left: 10px;
+  color: #d17581;
 }
 
 .thumbnail .caption-full {
-    padding: 9px;
-    color: #333;
+  padding: 9px;
+  color: #333;
 }
 
 footer {
-    margin: 50px 0;
+  margin: 50px 0;
 }
 
 .padding-left {
-    padding-left: 0.5em;
+  padding-left: 0.5em;
 }
 
 .margin-bottom {
-    margin-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .margin {
-    margin-bottom: 0.1em;
-    margin-top: 0.1em;
-    margin-left: 0.1em;
-    margin-right: 0.1em;
+  margin: 0.1em;
 }
 
 .thumbnail .caption {
-    padding: 0px;
-    color: #333;
+  color: #333;
 }
 
 .thumbnail {
-    padding: 9px;
-    color: #333;
+  padding: 9px;
+  color: #333;
 }
 
 .overflowy {
-    overflow-y: hidden;
+  overflow-y: hidden;
 }
 
-.overflowy:hover{
-    overflow-y: scroll;
+.overflowy:hover {
+  overflow-y: scroll;
 }
 
 /* width */
 ::-webkit-scrollbar {
-    width: 1px;
+  width: 1px;
 }
-  
+
 /* Track */
 ::-webkit-scrollbar-track {
-background: #f1f1f1; 
+  background: #f1f1f1;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-background: #555; 
+  background: #555;
 }

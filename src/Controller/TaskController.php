@@ -119,9 +119,7 @@ class TaskController extends AbstractController
             $this->addFlash('success', 'La tâche a bien été supprimée.');
             return $this->redirectToRoute('task_list');
         }
-            $this->addFlash('error', 'Token Csrf non valide');
-            return $this->redirectToRoute('task_list');
-        $this->addFlash('error', 'Vous n\'avez pas les droits nécessaires afin de supprimer cette tâche.');
+        $this->addFlash('error', 'Token Csrf non valide');
         return $this->redirectToRoute('task_list');
     }
 }

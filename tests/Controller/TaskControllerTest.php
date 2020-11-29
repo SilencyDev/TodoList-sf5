@@ -103,7 +103,7 @@ class TaskControllerTest extends WebTestCase
 
         $crawler = $this->client->request('GET', '/tasks');
 
-        $form = $crawler->filter(sprintf('#%s > form', $idtask))->form();
+        $crawler->filter(sprintf('#%s > form', $idtask))->form();
         $crawler = $this->client->request('POST', sprintf('/tasks/delete/%s', $idtask), array(
             '_token' => "badtoken"
         ));
