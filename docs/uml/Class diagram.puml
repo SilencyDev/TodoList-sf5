@@ -1,21 +1,103 @@
 @startuml Class diagram
 
-rectangle "Class diagram" {
-
+package Entity <<Frame>> {
     Class Task {
-        - title: String
-        - content: String
-        - createdAt: Datetime
-        - user: User
-        - isDone: Bool
+        - title
+        - content
+        - createdAt
+        - user
+        - isDone
+        __
+        + __construct()
     }
 
     Class User {
-        - username: String
-        - password: String
-        - email: String
-        - roles: Json
-        - tasks: Task
+        - username
+        - password
+        - email
+        - roles
+        - tasks
+        __
+        + __construct()
+        + getSalt()
+        + eraseCredentials()
+        + serialize()
+        + getUsername()
+    }
+}
+
+package Controller <<Frame>> {
+    Class DefaultController {
+        __
+        + indexAction()
+    }
+
+    Class SecurityController {
+        __
+        + loginAction()
+        + logoutCheck()
+    }
+
+    Class TaskController {
+        - nbResult
+        __
+        + listAction()
+        + listDoneAction()
+        + formAction()
+        + toggleTaskAction()
+        + deleteTaskAction()
+    }
+
+    Class UserController {
+        - nbResult
+        __
+        + listAction()
+        + formAction()
+    }
+}
+
+package DataFixtures <<Frame>> {
+    Class AppFixtures {
+        __
+        + load()
+        - taskCatalogue()
+    }
+}
+
+package Security/Voter <<Frame>> {
+    Class TaskVoter {
+        __
+        # supports()
+        # voteOnAttribute()
+    }
+}
+
+package Repository <<Frame>> {
+    Class TaskRepository {
+        __
+        + __construct()
+        + findTasksFilteredByBoolDone()
+        + countTasksDone()
+        + countTasksNotDone()
+    }
+
+    Class UserRepository {
+        __
+        + __construct()
+        + findUsers()
+        + countUsers()
+    }
+}
+
+package Form <<Frame>> {
+    Class TaskType {
+        __
+        + buildForm()
+    }
+
+    Class UserType {
+        __
+        + buildForm()
     }
 }
 
